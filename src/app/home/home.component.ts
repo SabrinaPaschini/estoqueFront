@@ -17,15 +17,10 @@ export class HomeComponent implements OnInit {
     valor: '',
   };
 
-  mostraTipo() {
-    return this.componente.tipo;
-  }
 
-  mostraMedida() {
-    return this.componente.medida;
-  }
+  adiconaComponente(){
 
-  mostraValor() {
-    return this.componente.valor;
+    new this.componente = 
+    
   }
 }

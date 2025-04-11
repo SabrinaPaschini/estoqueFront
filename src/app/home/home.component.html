@@ -31,10 +31,11 @@
     <div class="value">
       <p>Value:</p>
       <input type="number" name="valor" [(ngModel)]="componente.valor" />
-      <button class="btn" (click)="mostraTipo()">Enviar</button>
+      <button class="btn" >Enviar</button>
       <p>
-        Tipo Selecionado: {{ mostraTipo() }} {{ componente.valor }} {{ mostraMedida() }}
+        Tipo Selecionado: {{ componente.tipo}} {{ componente.valor }} {{ componente.medida }}
       </p>
     </div>
+    <p>componente adiconado, valor fixo: </p>
   </section>
 </form>
