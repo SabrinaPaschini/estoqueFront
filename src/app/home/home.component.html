@@ -1,0 +1,40 @@
+<header class="header">
+  <h1>Cadastro de componentes eletrônicos</h1>
+</header>
+<form>
+  <section class="all-select">
+    <p>Selecione um componente para cadastro:</p>
+    <select name="tipoComponente" [(ngModel)]="componente.tipo">
+      <option value="Resistor">Resistor</option>
+      <option value="Capacitor">Capacitor</option>
+      <option value="Elerolitico">Capacitor Elerolítico</option>
+    </select>
+
+    <div class="types" *ngIf="componente.tipo === 'Resistor'">
+      <select name="ResistorMedida" [(ngModel)]="componente.medida">
+        <option value="Ω">Ω</option>
+        <option value="KΩ">KΩ</option>
+        <option value="MΩ">MΩ</option>
+      </select>
+    </div>
+    .
+    <div
+      class="types"
+      *ngIf="componente.tipo === 'Capacitor' || componente.tipo === 'Elerolitico' "   >
+      <select name="CapacitorMedida">
+        <option value="ohms">pF</option>
+        <option value="nF">nF</option>
+        <option value="k">µF</option>
+      </select>
+    </div>
+
+    <div class="value">
+      <p>Value:</p>
+      <input type="number" name="valor" [(ngModel)]="componente.valor" />
+      <button class="btn" (click)="mostraTipo()">Enviar</button>
+      <p>
+        Tipo Selecionado: {{ mostraTipo() }} {{ componente.valor }} {{ mostraMedida() }}
+      </p>
+    </div>
+  </section>
+</form>
