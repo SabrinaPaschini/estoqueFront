@@ -1,6 +1,7 @@
 <header class="header">
   <h1>Cadastro de componentes eletrônicos</h1>
 </header>
+
 <form>
   <section class="all-select">
     <p>Selecione um componente para cadastro:</p>
@@ -18,24 +19,22 @@
       </select>
     </div>
     .
-    <div
-      class="types"
+    <div class="types"
       *ngIf="componente.tipo === 'Capacitor' || componente.tipo === 'Elerolitico' "   >
-      <select name="CapacitorMedida">
+      <select name="CapacitorMedida" [(ngModel)]="componente.medida"> 
         <option value="ohms">pF</option>
         <option value="nF">nF</option>
-        <option value="k">µF</option>
+        <option value="µF">µF</option>
       </select>
     </div>
 
     <div class="value">
       <p>Value:</p>
       <input type="number" name="valor" [(ngModel)]="componente.valor" />
-      <button class="btn" >Enviar</button>
-      <p>
-        Tipo Selecionado: {{ componente.tipo}} {{ componente.valor }} {{ componente.medida }}
-      </p>
+      <button class="btn" (click)="chamaObjeto()">Enviar</button>
+      <p>Tipo Selecionado: {{ componente.tipo}} {{ componente.valor }} {{ componente.medida }}</p>
+
     </div>
-    <p>componente adiconado, valor fixo: </p>
+  <h1>teste objeto:</h1>    
   </section>
 </form>
