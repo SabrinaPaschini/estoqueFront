@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DadosEstoqueService } from '../dados-estoque.service';
+
+interface Componente {
+  // typescript
+  tipo: string;
+  medida: string;
+  valor: string;
+}
+
 @Component({
   selector: 'app-estoque',
   templateUrl: './estoque.component.html',
@@ -7,9 +16,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstoqueComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dadosEstoqueService:DadosEstoqueService) { }
+
+  componentes: Componente[] = []; 
 
   ngOnInit(): void {
+
+    this.componentes = this.dadosEstoqueService.getData();
+
   }
+
+
+
 
 }

@@ -2,7 +2,7 @@
   <h1>Cadastro de componentes eletrônicos</h1>
 </header>
 
-<form>
+<form (ngSubmit)="chamaObjeto()">
   <section class="all-select">
     <p>Selecione um componente para cadastro:</p>
     <select name="tipoComponente" [(ngModel)]="componente.tipo">
@@ -19,10 +19,14 @@
       </select>
     </div>
     .
-    <div class="types"
-      *ngIf="componente.tipo === 'Capacitor' || componente.tipo === 'Elerolitico' "   >
-      <select name="CapacitorMedida" [(ngModel)]="componente.medida"> 
-        <option value="ohms">pF</option>
+    <div
+      class="types"
+      *ngIf="
+        componente.tipo === 'Capacitor' || componente.tipo === 'Elerolitico'
+      "
+    >
+      <select name="CapacitorMedida" [(ngModel)]="componente.medida">
+        <option value="pF">pF</option>
         <option value="nF">nF</option>
         <option value="µF">µF</option>
       </select>
@@ -31,10 +35,12 @@
     <div class="value">
       <p>Value:</p>
       <input type="number" name="valor" [(ngModel)]="componente.valor" />
-      <button class="btn" (click)="chamaObjeto()">Enviar</button>
-      <p>Tipo Selecionado: {{ componente.tipo}} {{ componente.valor }} {{ componente.medida }}</p>
-
+      <button class="btn">Enviar</button>
     </div>
-  <h1>teste objeto:</h1>    
+
+    <li>
+      <ul *ngFor="let componente of componentes"></ul>
+      {{ componente.tipo }} - {{ componente.valor }} {{ componente.medida }}
+    </li>
   </section>
 </form>

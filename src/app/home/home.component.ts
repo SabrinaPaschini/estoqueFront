@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-interface Componente { // typescript 
+import { DadosEstoqueService } from '../dados-estoque.service';
+
+interface Componente {
+  // typescript meu proprio tipo 
   tipo: string;
   medida: string;
   valor: string;
@@ -13,25 +16,33 @@ interface Componente { // typescript
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
   componente = {
     tipo: '',
     medida: '',
     valor: '',
   };
 
-  componentes: Componente[] = []; // relacionado a interface, tipo componente 
+  componentes: Componente[] = []; // um novo array de componentes .push
 
-  constructor() {}
+  constructor(private dadosEstoqueService: DadosEstoqueService) {}
 
   ngOnInit(): void {}
 
-  chamaObjeto() {
-    console.log(this.componente);
-  }
-
 
   salvaComponente() {
-    this.componentes.push({ ...this.componente }); // spread operator - cria uma copia do objeto atual 
+    this.componentes.push({ ...this.componente }); // spread operator - cria uma copia do objeto atual
+  }
+
+  chamaObjeto() {
+    console.log(this.componente, 'esse é o objeto componente e suas propriedades');
     this.componente = { tipo: '', medida: '', valor: '' };
   }
+
+  saveData(){ 
+    this.dadosEstoqueService.sendData({... this.componente});
+    this.componente = { tipo: '', medida: '', valor: '' };
+  }
+
+
 }
