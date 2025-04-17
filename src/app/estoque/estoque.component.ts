@@ -16,13 +16,20 @@ interface Componente {
 })
 export class EstoqueComponent implements OnInit {
 
-  constructor(private dadosEstoqueService:DadosEstoqueService) { }
-
   componentes: Componente[] = []; 
 
-  ngOnInit(): void {
+  constructor(private dadosEstoqueService:DadosEstoqueService) { }
 
-    this.componentes = this.dadosEstoqueService.getData();
+  
+  ngOnInit(): void { // se inscreve no observable para pegar as atualizações de dados 
+
+    this.dadosEstoqueService.componentes$.subscribe((dados) => {
+      
+      console.log('Dados no estoque', dados); 
+      this.componentes = dados; 
+    });
+
+   
 
   }
 

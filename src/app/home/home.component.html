@@ -2,30 +2,31 @@
   <h1>Cadastro de componentes eletrônicos</h1>
 </header>
 
-<form (ngSubmit)="chamaObjeto()">
+<form (ngSubmit)="saveData()" #form="ngForm">
+  <!-- aqui ele cria uma variavel, form para depois fazer a verificação #ngform -->
   <section class="all-select">
     <p>Selecione um componente para cadastro:</p>
-    <select name="tipoComponente" [(ngModel)]="componente.tipo">
+    <select name="tipoComponente" [(ngModel)]="componente.tipo" required>
       <option value="Resistor">Resistor</option>
       <option value="Capacitor">Capacitor</option>
       <option value="Elerolitico">Capacitor Elerolítico</option>
     </select>
 
     <div class="types" *ngIf="componente.tipo === 'Resistor'">
-      <select name="ResistorMedida" [(ngModel)]="componente.medida">
+      <select name="ResistorMedida" [(ngModel)]="componente.medida" required>
         <option value="Ω">Ω</option>
         <option value="KΩ">KΩ</option>
         <option value="MΩ">MΩ</option>
       </select>
     </div>
-    .
+
     <div
       class="types"
       *ngIf="
         componente.tipo === 'Capacitor' || componente.tipo === 'Elerolitico'
       "
     >
-      <select name="CapacitorMedida" [(ngModel)]="componente.medida">
+      <select name="CapacitorMedida" [(ngModel)]="componente.medida" required>
         <option value="pF">pF</option>
         <option value="nF">nF</option>
         <option value="µF">µF</option>
@@ -34,13 +35,16 @@
 
     <div class="value">
       <p>Value:</p>
-      <input type="number" name="valor" [(ngModel)]="componente.valor" />
-      <button class="btn">Enviar</button>
+      <input
+        type="number"
+        name="valor"
+        [(ngModel)]="componente.valor"
+        required
+      />
     </div>
-
-    <li>
-      <ul *ngFor="let componente of componentes"></ul>
-      {{ componente.tipo }} - {{ componente.valor }} {{ componente.medida }}
-    </li>
   </section>
+  <button class="btn" [disabled]="!form.valid">Enviar</button>
+  <!-- aqui está a verificação-->
 </form>
+
+

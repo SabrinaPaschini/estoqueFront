@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DadosEstoqueService } from '../dados-estoque.service';
 
 interface Componente {
-  // typescript meu proprio tipo 
+  // typescript meu proprio tipo
   tipo: string;
   medida: string;
   valor: string;
@@ -16,7 +16,6 @@ interface Componente {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   componente = {
     tipo: '',
     medida: '',
@@ -27,22 +26,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private dadosEstoqueService: DadosEstoqueService) {}
 
-  ngOnInit(): void {}
-
-
-  salvaComponente() {
-    this.componentes.push({ ...this.componente }); // spread operator - cria uma copia do objeto atual
+  ngOnInit(): void {
+    // é assim que se inscreve no observable
+    this.dadosEstoqueService.componentes$.subscribe((dados) => {
+      this.componentes = dados; // a cada atualizaçao os dados vao para a lista
+    });
   }
 
-  chamaObjeto() {
-    console.log(this.componente, 'esse é o objeto componente e suas propriedades');
+  saveData() {
+    this.dadosEstoqueService.sendData({ ...this.componente });
     this.componente = { tipo: '', medida: '', valor: '' };
-  }
-
-  saveData(){ 
-    this.dadosEstoqueService.sendData({... this.componente});
-    this.componente = { tipo: '', medida: '', valor: '' };
-  }
-
-
-}
+  }}
