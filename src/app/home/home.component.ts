@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { DadosEstoqueService } from '../dados-estoque.service';
 
 interface Componente {
-  // typescript meu proprio tipo
+  // typescript, meu proprio tipo
   tipo: string;
   medida: string;
   valor: string;
@@ -16,7 +15,7 @@ interface Componente {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  componente = {
+  componente: Componente = {
     tipo: '',
     medida: '',
     valor: '',
@@ -33,7 +32,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  saveData() {
-    this.dadosEstoqueService.sendData({ ...this.componente });
+  sendData() {
+    this.dadosEstoqueService.createData({ ...this.componente });
     this.componente = { tipo: '', medida: '', valor: '' };
-  }}
+  }
+}

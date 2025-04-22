@@ -2,7 +2,7 @@
   <h1>Cadastro de componentes eletrônicos</h1>
 </header>
 
-<form (ngSubmit)="saveData()" #form="ngForm">
+<form (ngSubmit)="sendData()" #form="ngForm">
   <!-- aqui ele cria uma variavel, form para depois fazer a verificação #ngform -->
   <section class="all-select">
     <p>Selecione um componente para cadastro:</p>
@@ -46,5 +46,3 @@
   <button class="btn" [disabled]="!form.valid">Enviar</button>
   <!-- aqui está a verificação-->
 </form>
-
-

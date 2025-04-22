@@ -12,28 +12,20 @@ interface Componente {
 @Component({
   selector: 'app-estoque',
   templateUrl: './estoque.component.html',
-  styleUrls: ['./estoque.component.css']
+  styleUrls: ['./estoque.component.css'],
 })
 export class EstoqueComponent implements OnInit {
+  componentes: Componente[] = [];
 
-  componentes: Componente[] = []; 
+  constructor(private dadosEstoqueService: DadosEstoqueService) {}
 
-  constructor(private dadosEstoqueService:DadosEstoqueService) { }
+  ngOnInit(): void {
+    // se inscreve no observable para pegar as atualizações de dados
 
-  
-  ngOnInit(): void { // se inscreve no observable para pegar as atualizações de dados 
-
-    this.dadosEstoqueService.componentes$.subscribe((dados) => {
+    this.dadosEstoqueService.componentes$.subscribe((dados) => { // essa variavel é uma variavel temporária 
       
-      console.log('Dados no estoque', dados); 
-      this.componentes = dados; 
+      // aqui eu estou atribuindo o valor da variavel que é um array do tipo componente, e esse novo valor é dados, que é recebido pelo observable que veio do dados-estoque que eu importei no inicio e coloquei no constructor
+      this.componentes = dados;
     });
-
-   
-
   }
-
-
-
-
 }
