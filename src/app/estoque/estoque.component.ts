@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DadosEstoqueService } from '../dados-estoque.service';
+import { DadosEstoqueService } from '../../sevices/dados-estoque.service';
 
 interface Componente {
   // typescript
